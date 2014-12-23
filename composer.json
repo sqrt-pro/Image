@@ -1,8 +1,8 @@
 {
     "name":"sqrt-pro/image",
     "type":"library",
-    "description": "SQRT.pro Image is part of SQRT Framework",
-    "homepage":"http://cmsx.ru",
+    "description": "Image is part of SQRT Framework",
+    "homepage":"http://fw.sqrt.pro",
     "license":"MIT",
     "authors":[
         {

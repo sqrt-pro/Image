@@ -2,7 +2,7 @@
 
 namespace SQRT;
 
-use SQRT\Image\Exception;
+use SQRT\Image\Exception as Ex;
 
 class Image
 {
@@ -203,7 +203,7 @@ class Image
         return imagegif($this->image, $file);
         break;
       default:
-        Exception::ThrowError(Exception::BAD_TYPE);
+        Ex::ThrowError(Ex::BAD_TYPE);
     }
   }
 
@@ -220,7 +220,7 @@ class Image
 
     // Меняем размер
     if (!imagecopyresampled($new_image, $this->image, 0, 0, 0, 0, $x, $y, $this->getWidth(), $this->getHeight())) {
-      Exception::ThrowError(Exception::RESIZE);
+      Ex::ThrowError(Ex::RESIZE);
     }
 
     $this->image = $new_image;
@@ -247,7 +247,7 @@ class Image
     imagesavealpha($new_image, true);
 
     if (!imagecopy($new_image, $this->image, 0, 0, $new_x, $new_y, $width, $height)) {
-      Exception::ThrowError(Exception::CROP);
+      Ex::ThrowError(Ex::CROP);
     }
 
     $this->image = $new_image;
@@ -283,8 +283,8 @@ class Image
 
     try {
       $watermark = new Image($file);
-    } catch (Exception $e) {
-      throw new Exception($e->getMessage(), Exception::WATERMARK);
+    } catch (Ex $e) {
+      throw new Ex($e->getMessage(), Ex::WATERMARK);
     }
 
     $width  = $watermark->getWidth();
@@ -293,7 +293,7 @@ class Image
     list ($new_x, $new_y) = static::CalculateOffset($x, $y, $this->getWidth(), $this->getHeight(), $width, $height);
 
     if (!imagecopy($this->getImage(), $watermark->getImage(), $new_x, $new_y, 0, 0, $width, $height)) {
-      Exception::ThrowError(Exception::WATERMARK);
+      Ex::ThrowError(Ex::WATERMARK);
     }
 
     return $this;
@@ -322,7 +322,7 @@ class Image
     }
 
     if (!is_file($image)) {
-      Exception::ThrowError(Exception::FILE_NOT_EXIST, $image);
+      Ex::ThrowError(Ex::FILE_NOT_EXIST, $image);
     }
 
     $this->type = $this->getTypeByFile($image);

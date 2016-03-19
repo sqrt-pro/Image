@@ -14,7 +14,7 @@
     "require":{
         "php":">=5.3.0",
         "ext-gd":"*",
-        "sqrt-pro/exception": "dev-master"
+        "sqrt-pro/exception": "~0.1"
     },
     "autoload":{
         "psr-0":{
